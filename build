@@ -1,0 +1,2 @@
+docker build -t itsnet/alpine-autossh .
+docker push itsnet/alpine-autossh
