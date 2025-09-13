@@ -9,7 +9,7 @@ spec:
     image: itsnet/alpine-autossh
     command: ["/bin/sh", "-c"]
     args:
-      - autossh -M 0 -N -i /home/secure_link/.ssh/id_rsa -N -R 0.0.0.0:8080:10.20.87.40:8080 secure_link@94.136.189.253 -p 59999 -o UserKnownHostsFile=/home/secure_link/.ssh/known_hosts
+      - autossh -M 0 -N -i /home/secure_link/.ssh/id_rsa -N -R 94.136.189.253:8080:10.20.87.40:8080 secure_link@94.136.189.253 -p 59999 -o UserKnownHostsFile=/home/secure_link/.ssh/known_hosts
     volumeMounts:
     - name: ssh-keys
       mountPath: /home/secure_link/.ssh
