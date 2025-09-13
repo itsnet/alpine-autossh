@@ -9,10 +9,10 @@ spec:
     image: itsnet/alpine-autossh
     command: ["/bin/sh", "-c"]
     args:
-      - autossh -M 0 -N -i /home/.ssh/id_rsa -N -R localhost:8080:10.20.87.40:8080 secure_link@94.136.189.253
+      - autossh -M 0 -N -i /home/secure_link/.ssh/id_rsa -N -R localhost:8080:10.20.87.40:8080 secure_link@94.136.189.253
     volumeMounts:
     - name: ssh-keys
-      mountPath: /home/.ssh
+      mountPath: /home/secure_link/.ssh
       readOnly: true
   volumes:
   - name: ssh-keys
