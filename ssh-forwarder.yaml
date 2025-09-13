@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: alpine-ssh
-    image: your-registry/alpine-ssh
+    image: itsnet/alpine-ssh
     command: ["/bin/sh", "-c"]
     args:
       - ssh -i /root/.ssh/id_rsa -N -L 8080:localhost:80 user@remote-host
