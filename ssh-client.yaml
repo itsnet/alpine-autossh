@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssh-client
+spec:
+  containers:
+    - name: ssh-container
+      image: alpine
+      command:
+        - autossh
+      args:
+        - "-M"
+        - "0"                        # disable monitoring port
+        - "-o"
+        - "StrictHostKeyChecking=no" # skip host key check (optional)
+        - "-o"
+        - "ServerAliveInterval=30"   # keepalive
+        - "-o"
+        - "ServerAliveCountMax=3"
+        - "-N"                       # no remote command
+        - "-L"
+        - "8080:localhost:80"        # local:remote port mapping
+        - "user@remote-host.example.com"
+      volumeMounts:
+        - name: ssh-key-vol
+          mountPath: /root/.ssh
+          readOnly: true
+  volumes:
+    - name: ssh-key-vol
+      secret:
+        secretName: ssh-key-secret
+        defaultMode: 0600
