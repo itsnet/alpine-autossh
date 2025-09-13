@@ -6,10 +6,10 @@ metadata:
 spec:
   containers:
   - name: alpine-ssh
-    image: itsnet/alpine-ssh
+    image: itsnet/alpine-autossh
     command: ["/bin/sh", "-c"]
     args:
-      - ssh -i /root/.ssh/id_rsa -N -L 8080:localhost:80 user@remote-host
+      - ssh -i /root/.ssh/id_rsa -N -R 8080:10.20.87.40:80 secure_link@94.136.189.253
     volumeMounts:
     - name: ssh-keys
       mountPath: /root/.ssh
