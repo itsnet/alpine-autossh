@@ -1,0 +1,20 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssh-forwarder-gku
+spec:
+  containers:
+  - name: alpine-ssh
+    image: itsnet/alpine-autossh
+    command: ["/bin/sh", "-c"]
+    args:
+      - autossh -M 0 -N -i /home/secure_link/.ssh/id_rsa -N -L 0.0.0.0:58888:Dell:3389 secure_link@103.94.138.132 -p 59999 -o UserKnownHostsFile=/home/secure_link/.ssh/known_hosts
+    volumeMounts:
+    - name: ssh-keys
+      mountPath: /home/secure_link/.ssh
+      readOnly: true
+  volumes:
+  - name: ssh-keys
+    secret:
+      secretName: ssh-keys
